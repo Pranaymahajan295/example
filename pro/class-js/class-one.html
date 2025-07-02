@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Document</title>
+</head>
+<body>
+    <p id="result"></p>
+    <script>
+        // Sum function
+        function sum(a, b) {
+            return a + b;
+        }
+
+        // Difference function
+        function diff(a, b) {
+            return a - b;
+        }
+
+        // Product function
+        function product(a, b) {
+            return a * b;
+        }
+
+        // Division function
+        function division(a, b) {
+            return a / b;
+        }
+
+        // Using sum function
+        let addone = sum(10, 20);
+        console.log("addone:", addone);  
+
+        let addtwo = sum(30, 40);
+        console.log("addtwo:", addtwo);  
+
+        // Final calculate function
+        function calculate(){
+            let addition = sum(10, 20);
+            let subtraction = diff(10, 20);
+            let multiplication = product(10, 20);
+            let quotient = division(10, 20);
+
+            return addition ;
+        }
+
+        let result = calculate();
+        console.log( result);
+        document.getElementById("result").innerText = + result;
+    </script>
+</body>
+</html>

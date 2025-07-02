@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator & Countdown</title>
+</head>
+<body>
+    <div id="display"></div> <!-- Needed for decrement to show output -->
+
+    <script>
+        function add(a, b) {
+            return a + b;
+        }
+
+        function subtract(a, b) {
+            return a - b;
+        }
+
+        function calculator(x, y) {
+            let sum = add(x, y);
+            let diff = subtract(x, y);
+            console.log("Sum:", sum);
+            console.log("Difference:", diff);
+            return { sum, diff };
+        }
+
+        let result = calculator(5, 3);
+        console.log(result); // logs { sum: 8, diff: 2 }
+
+        function decrement(number) {
+            if (number <= 0) {
+                console.log("end");
+            } else {
+                document.getElementById("display").innerHTML += number + " ";
+                console.log(number);
+                decrement(number - 1);
+            }
+            return 0;
+        }
+
+        // Call the decrement function to test it
+        decrement(5);
+    </script>
+</body>
+</html>

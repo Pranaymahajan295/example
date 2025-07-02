@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <h1 id="result-1"></h1>
+    <button onclick="getTable(5)">print table of 2</button>
+    <script>
+        function getTable(){
+            let table = "";
+            for ( let i = 1; i <= 10; i++ ){
+                table += number * i + "<br>";
+
+            }
+            document.getElementById("result-1").innerHTML = table;
+        }
+    </script>
+    
+</body>
+</html>
