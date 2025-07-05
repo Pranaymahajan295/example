@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bank</title>
+  </head>
+  <body>
+    <pre>
+           1. Deposit    $100.00
+           2. Withdraw   $50.00
+           3. Check Balance $200.00
+           4. Exit
+           Enter 0 to finish your transaction.
+    </pre>
+
+    <button onclick="bankTransaction()"> Start</button>
+    <h1 id="balance"></h1>
+
+    <script>
+      let balance = 200;
+
+      function bankTransaction() {
+        while (true) {
+          let choice = prompt("Enter the transaction number (0 to finish):");
+
+          if (choice == "0") {
+            break;
+          } else if (choice == "1") {
+            let amount = parseFloat(prompt("Enter deposit amount:"));
+            if (!isNaN(amount) && amount > 0) {
+              balance += amount;
+              alert(
+                `$${amount.toFixed(
+                  2
+                )} deposited. New balance: $${balance.toFixed(2)}`
+              );
+            } else {
+              alert("Invalid deposit amount.");
+            }
+          } else if (choice == "2") {
+            let amount = parseFloat(prompt("Enter withdrawal amount:"));
+            if (!isNaN(amount) && amount > 0 && amount <= balance) {
+              balance -= amount;
+              alert(
+                `$${amount.toFixed(
+                  2
+                )} withdrawn. New balance: $${balance.toFixed(2)}`
+              );
+            } else {
+              alert("Invalid withdrawal amount or insufficient funds.");
+            }
+          } else if (choice == "3") {
+            alert(`Current balance: $${balance.toFixed(2)}`);
+          } else if (choice == "4") {
+            alert("Exiting the transaction system.");
+            break;
+          } else {
+            alert("Invalid choice. Please try again.");
+            break;
+          }
+        }
+
+        document.getElementById(
+          "balance"
+        ).innerText = `Final Balance: $${balance.toFixed(2)}`;
+      }
+
+      // Run the function on page load
+      bankTransaction();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduHub - Your Academic Companion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #1e3c72;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo::before {
+            content: "🎓";
+            font-size: 1.2em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #1e3c72;
+        }
+
+        .main-content {
+            margin-top: 80px;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero-title {
+            font-size: 3.5em;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3em;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-bar {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            max-width: 500px;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            flex: 1;
+            font-size: 1.1em;
+            padding: 5px;
+        }
+
+        .search-bar button {
+            background: #1e3c72;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background: #2a5298;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .tab {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 2px solid transparent;
+        }
+
+        .tab.active {
+            background: white;
+            color: #1e3c72;
+            border: 2px solid #1e3c72;
+        }
+
+        .tab:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .tab.active:hover {
+            background: white;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .classes-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #1e3c72;
+        }
+
+        .add-btn {
+            background: #1e3c72;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .add-btn:hover {
+            background: #2a5298;
+        }
+
+        .class-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .class-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 25px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .class-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .class-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .class-card:hover::before {
+            opacity: 1;
+        }
+
+        .class-number {
+            font-size: 2.5em;
+            font-weight: 900;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .class-info h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .subject-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .subject-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+
+        .notes-count {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+
+        .notes-panel {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .notes-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .notes-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #1e3c72;
+        }
+
+        .note-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid #1e3c72;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .note-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .note-title {
+            font-weight: 600;
+            color: #1e3c72;
+            margin-bottom: 5px;
+        }
+
+        .note-preview {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .note-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            font-size: 0.8em;
+            color: #999;
+        }
+
+        .add-note-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .add-note-btn:hover {
+            background: #218838;
+        }
+
+        .stats-bar {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .floating-notes {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .floating-notes:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(40, 167, 69, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .hero-title {
+                font-size: 2.5em;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .class-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">EduHub</div>
+            <div class="nav-links">
+                <a href="#" onclick="showTab('classes')">Classes</a>
+                <a href="#" onclick="showTab('notes')">My Notes</a>
+                <a href="#" onclick="showTab('library')">Library</a>
+                <a href="#" onclick="showTab('profile')">Profile</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="hero-section">
+            <h1 class="hero-title">Your Academic Journey</h1>
+            <p class="hero-subtitle">Access comprehensive study materials, organize your notes, and excel in your academic pursuits</p>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Search classes, notes, or subjects..." id="searchInput">
+                <button onclick="searchContent()">🔍 Search</button>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('classes')">📚 Classes</div>
+            <div class="tab" onclick="showTab('notes')">📝 My Notes</div>
+            <div class="tab" onclick="showTab('library')">📖 Library</div>
+            <div class="tab" onclick="showTab('assignments')">📋 Assignments</div>
+        </div>
+
+        <div class="content-grid">
+            <div class="classes-section" id="classesSection">
+                <div class="section-header">
+                    <h2 class="section-title">Available Classes</h2>
+                    <button class="add-btn" onclick="addClass()">+ Add Class</button>
+                </div>
+                
+                <div class="class-grid" id="classGrid">
+                    <div class="class-card" onclick="openClass(8)">
+                        <div class="class-number">8</div>
+                        <div class="class-info">
+                            <h3>Class 8</h3>
+                            <div class="subject-tags">
+                                <span class="subject-tag">Physics</span>
+                                <span class="subject-tag">Chemistry</span>
+                                <span class="subject-tag">Biology</span>
+                                <span class="subject-tag">Math</span>
+                            </div>
+                            <div class="notes-count">📄 24 Notes Available</div>
+                        </div>
+                    </div>
+
+                    <div class="class-card" onclick="openClass(9)">
+                        <div class="class-number">9</div>
+                        <div class="class-info">
+                            <h3>Class 9</h3>
+                            <div class="subject-tags">
+                                <span class="subject-tag">Physics</span>
+                                <span class="subject-tag">Chemistry</span>
+                                <span class="subject-tag">Biology</span>
+                                <span class="subject-tag">Math</span>
+                                <span class="subject-tag">English</span>
+                            </div>
+                            <div class="notes-count">📄 32 Notes Available</div>
+                        </div>
+                    </div>
+
+                    <div class="class-card" onclick="openClass(10)">
+                        <div class="class-number">10</div>
+                        <div class="class-info">
+                            <h3>Class 10</h3>
+                            <div class="subject-tags">
+                                <span class="subject-tag">Physics</span>
+                                <span class="subject-tag">Chemistry</span>
+                                <span class="subject-tag">Biology</span>
+                                <span class="subject-tag">Math</span>
+                                <span class="subject-tag">Social Studies</span>
+                            </div>
+                            <div class="notes-count">📄 28 Notes Available</div>
+                        </div>
+                    </div>
+
+                    <div class="class-card" onclick="openClass(11)">
+                        <div class="class-number">11</div>
+                        <div class="class-info">
+                            <h3>Class 11</h3>
+                            <div class="subject-tags">
+                                <span class="subject-tag">Physics</span>
+                                <span class="subject-tag">Chemistry</span>
+                                <span class="subject-tag">Biology</span>
+                                <span class="subject-tag">Math</span>
+                                <span class="subject-tag">Computer</span>
+                            </div>
+                            <div class="notes-count">📄 35 Notes Available</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes-panel">
+                <div class="notes-header">
+                    <h3 class="notes-title">Recent Notes</h3>
+                    <button class="add-note-btn" onclick="addNote()">+ Add Note</button>
+                </div>
+                
+                <div class="note-item" onclick="openNote('physics-motion')">
+                    <div class="note-title">Physics - Motion & Force</div>
+                    <div class="note-preview">Newton's laws of motion and their applications in daily life...</div>
+                    <div class="note-meta">
+                        <span>📅 Today</span>
+                        <span>📝 Physics</span>
+                    </div>
+                </div>
+
+                <div class="note-item" onclick="openNote('chemistry-acids')">
+                    <div class="note-title">Chemistry - Acids & Bases</div>
+                    <div class="note-preview">Understanding pH scale, indicators, and neutralization reactions...</div>
+                    <div class="note-meta">
+                        <span>📅 Yesterday</span>
+                        <span>🧪 Chemistry</span>
+                    </div>
+                </div>
+
+                <div class="note-item" onclick="openNote('biology-cells')">
+                    <div class="note-title">Biology - Cell Structure</div>
+                    <div class="note-preview">Detailed study of plant and animal cell components...</div>
+                    <div class="note-meta">
+                        <span>📅 2 days ago</span>
+                        <span>🔬 Biology</span>
+                    </div>
+                </div>
+
+                <div class="note-item" onclick="openNote('math-algebra')">
+                    <div class="note-title">Math - Algebraic Expressions</div>
+                    <div class="note-preview">Solving linear equations and quadratic formulas...</div>
+                    <div class="note-meta">
+                        <span>📅 3 days ago</span>
+                        <span>📐 Mathematics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number">119</div>
+                <div class="stat-label">Total Notes</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Subjects</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Active Classes</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">87%</div>
+                <div class="stat-label">Progress</div>
+            </div>
+        </div>
+    </div>
+
+    <button class="floating-notes" onclick="quickNote()" title="Quick Note">✏️</button>
+
+    <script>
+        function showTab(tabName) {
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+            
+            // Show relevant content
+            console.log('Showing:', tabName);
+        }
+
+        function searchContent() {
+            const searchTerm = document.getElementById('searchInput').value;
+            if (searchTerm.trim()) {
+                alert(`Searching for: "${searchTerm}"`);
+                // Implement search functionality here
+            }
+        }
+
+        function openClass(classNumber) {
+            alert(`Opening Class ${classNumber} materials and notes...`);
+        }
+
+        function addClass() {
+            const className = prompt('Enter class name:');
+            if (className) {
+                alert(`Adding ${className} to your classes...`);
+                // Implement add class functionality
+            }
+        }
+
+        function addNote() {
+            const noteTitle = prompt('Enter note title:');
+            if (noteTitle) {
+                alert(`Creating new note: "${noteTitle}"`);
+                // Implement add note functionality
+            }
+        }
+
+        function openNote(noteId) {
+            alert(`Opening note: ${noteId}`);
+            // Implement note opening functionality
+        }
+
+        function quickNote() {
+            const quickNoteContent = prompt('Quick note:');
+            if (quickNoteContent) {
+                alert(`Quick note saved: "${quickNoteContent}"`);
+                // Implement quick note functionality
+            }
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchContent();
+            }
+        });
+
+        // Dynamic stats update
+        function updateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const finalValue = parseInt(stat.textContent);
+                let currentValue = 0;
+                const increment = finalValue / 50;
+                
+                const timer = setInterval(() => {
+                    currentValue += increment;
+                    if (currentValue >= finalValue) {
+                        stat.textContent = finalValue + (stat.textContent.includes('%') ? '%' : '');
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.floor(currentValue) + (stat.textContent.includes('%') ? '%' : '');
+                    }
+                }, 30);
+            });
+        }
+
+        // Initialize stats animation on page load
+        window.addEventListener('load', updateStats);
+    </script>
+</body>
+</html>
