@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Somlata Makeover</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #000;
+        color: white;
+      }
+      header {
+        background-color: #ff8500;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      header h1 {
+        color: white;
+        font-size: 24px;
+      }
+      nav a {
+        color: white;
+        margin: 0 10px;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .hero {
+        background-image: url("https://scontent.fnag12-1.fna.fbcdn.net/v/t39.30808-6/469088159_122196418142230333_5145586165003846536_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=LmrZb8xMUrIQ7kNvwEwWklM&_nc_oc=AdlXROmSWFXG21k5yh_5eFO9u1UWkz_UX5Ab1HSs81ivsgiPr9O34_7owgov8Uac1dw&_nc_zt=23&_nc_ht=scontent.fnag12-1.fna&_nc_gid=QfC0sRmatGrMlVu0Z-UxiA&oh=00_AfSp15ExjTBMiaohWtNSoMfkUjYz-Lh5txoegD3Py63NwQ&oe=68768D3F");
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero h2 {
+        font-size: 36px;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+      }
+      .about {
+        background-color: #ff8500;
+        padding: 50px 20px;
+        text-align: center;
+      }
+      .about h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+      .about p {
+        max-width: 600px;
+        margin: 0 auto;
+        font-size: 18px;
+      }
+      .gallery {
+        background-color: #ff8500;
+        padding: 30px 10px;
+        text-align: center;
+      }
+      .gallery h2 {
+        font-size: 32px;
+        margin-bottom: 20px;
+      }
+      .gallery-images {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 15px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .gallery-images img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+      footer {
+        background-color: black;
+        color: white;
+        padding: 30px 20px;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+      }
+      footer div {
+        margin: 10px;
+      }
+      footer h3 {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Somlata Makeover</h1>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+        <a
+          href="tel:+919529972627"
+          style="
+            background: white;
+            color: #ff8500;
+            padding: 5px 10px;
+            border-radius: 5px;
+          "
+          >+91 95299 72627</a
+        >
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h2>Welcome to Somlata Beauty Parlour</h2>
+      <button
+        style="
+          margin-top: 20px;
+          padding: 10px 20px;
+          background-color: #ff8500;
+          border: none;
+          color: white;
+          font-size: 16px;
+          cursor: pointer;
+        "
+      >
+        Book Now
+      </button>
+    </section>
+
+    <section class="about" id="about">
+      <h2>Welcome</h2>
+      <p>
+        We offer elegant and personalized bridal and beauty services. Led by
+        Somlata Mahajan, an award-nominated artist, our team brings expertise,
+        creativity, and passion to every client. From weddings to parties, let
+        us enhance your natural beauty and make your special day unforgettable.
+      </p>
+    </section>
+
+    <section class="gallery" id="gallery">
+      <h2>Gallery</h2>
+      <div class="gallery-images">
+        <img src="https://scontent.fnag9-1.fna.fbcdn.net/v/t39.30808-6/469277174_122196742658230333_207101148476796526_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=5971xnKVpdAQ7kNvwE0VC4y&_nc_oc=AdmkOLIbwmP8lz_ZPu1GI4XLmFk5JG3ZF93ImRRQRjqsZKrSvSqOY1wuRa32shyZAck&_nc_zt=23&_nc_ht=scontent.fnag9-1.fna&_nc_gid=iIjhM0BU8IDzUfHvZgWXXA&oh=00_AfS8l6_23-aBivY6t13zXvCgkO6dzgxaPG9Lftet0bgt2g&oe=68765DD0" alt="Makeup 1" />
+        <img src="https://scontent.fnag9-1.fna.fbcdn.net/v/t39.30808-6/469087932_122196742652230333_8247447876771984289_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_ohc=4zDHuaOzB4QQ7kNvwHPMr2S&_nc_oc=AdnFrXiWPF7SmqH8zYpAo_S98fBkk_c93WJqZ7cuKU2KZ96lYYCNSEe6iSgWCk5XzyM&_nc_zt=23&_nc_ht=scontent.fnag9-1.fna&_nc_gid=FtpMOziVMpbAtmFoLa1Wvw&oh=00_AfTGzWXz7rS6upJ0OfLRPxeXF8QSPk5THpUEaNA9cC1CZg&oe=6876602D" alt="Makeup 2" />
+        <img src="https://scontent.fnag9-1.fna.fbcdn.net/v/t39.30808-6/472180897_122202894494230333_1563863270307990286_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=pg3Nky78CBsQ7kNvwGmRB38&_nc_oc=AdmS8YCdvGfmYmHSQfA7LyZSuyKUUDRkLrcnfG3_5B3UKWelHrP1Aj6_iZKc6evR_8c&_nc_zt=23&_nc_ht=scontent.fnag9-1.fna&_nc_gid=09kl2kfGwhpV_B1NND4j8A&oh=00_AfTEY4ow44BCZEvXhLpz6YOpNvUYYH1rw_HU7AmKz9xmhg&oe=6876896E" alt="Makeup 3" />
+        <img src="https://scontent.fnag9-1.fna.fbcdn.net/v/t39.30808-6/472180897_122202894494230333_1563863270307990286_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=pg3Nky78CBsQ7kNvwGmRB38&_nc_oc=AdmS8YCdvGfmYmHSQfA7LyZSuyKUUDRkLrcnfG3_5B3UKWelHrP1Aj6_iZKc6evR_8c&_nc_zt=23&_nc_ht=scontent.fnag9-1.fna&_nc_gid=YkJ8hFB5U23mQRcfsNLXQg&oh=00_AfTzL7BmEQb3vxTHxPs99SDdMnu0xyOnB9DPbLaPdClDsg&oe=6876896E" alt="Makeup 4" />
+        <img src="https://scontent.fnag9-1.fna.fbcdn.net/v/t39.30808-6/472367772_122202894470230333_3360405790446578284_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=JmVXHq3Fx58Q7kNvwEfxkWm&_nc_oc=AdmeVFiPe_PtLpo10s0-GupWk0rKKBAsirONJPZ26o1vgYx5TWZaVLAjmOBJJIiuogg&_nc_zt=23&_nc_ht=scontent.fnag9-1.fna&_nc_gid=WGK-7ZIMc3wsGBkzXpzmRQ&oh=00_AfSDqbFP1HTeL1A26PYo74Gkrc0iYqJ6zD03nthLfd44uA&oe=687687A6" alt="Makeup 5" />
+        <img src="" alt="Makeup 6" />
+        <img src="" alt="Makeup 7" />
+        <img src="" alt="Makeup 8" />
+      </div>
+    </section>
+
+    <footer id="contact">
+      <div>
+        <h3>Professional</h3>
+        <p>Beauty Parlour</p>
+      </div>
+      <div>
+        <h3>Location</h3>
+        <p>Nagpur, Maharashtra</p>
+      </div>
+      <div>
+        <h3>Contact Us</h3>
+        <p>+91 95299 72627</p>
+      </div>
+    </footer>
+  </body>
+</html>

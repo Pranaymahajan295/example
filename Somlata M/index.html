@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aura Beauty Lounge - Your Dark & Divine Transformation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      /* --- Variables & Base Styles --- */
+      :root {
+        /* Dark Theme Colors based on your Portfolio */
+        --primary-dark: #1a1a1a; /* Very Dark Grey for main background */
+        --secondary-dark: #2a2a2a; /* Slightly Lighter Dark for cards/sections */
+        --accent-purple: #9b2cc7; /* Your portfolio's prominent purple */
+        --light-purple: #b655e3; /* Lighter shade of purple */
+        --text-light: #f8f8f8; /* Light text on dark backgrounds */
+        --text-mid: #cccccc; /* Slightly darker light text */
+        --accent-gold: #daa520; /* Goldenrod for highlights/hover */
+        --light-gold: #f5deb3; /* Wheat for subtle gold elements */
+
+        --font-heading: "Playfair Display", serif;
+        --font-body: "Poppins", sans-serif;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-body);
+        line-height: 1.6;
+        color: var(--text-mid); /* Default text color */
+        background-color: var(--primary-dark);
+        overflow-x: hidden; /* Prevent horizontal scroll */
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: var(--font-heading);
+        color: var(--text-light); /* Headings stand out */
+        margin-bottom: 1rem;
+      }
+
+      p {
+        margin-bottom: 1rem;
+      }
+
+      a {
+        text-decoration: none;
+        color: var(--light-purple); /* Links use a lighter purple */
+        transition: color 0.3s ease;
+      }
+
+      a:hover {
+        color: var(--accent-gold);
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .btn {
+        display: inline-block;
+        background-color: var(
+          --accent-purple
+        ); /* Buttons use the accent purple */
+        color: var(--text-light);
+        padding: 12px 25px;
+        border-radius: 5px;
+        font-weight: 600;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        border: none;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .btn:hover {
+        background-color: var(--accent-gold);
+        transform: translateY(-3px);
+        color: var(--text-light); /* Ensure text color remains light on hover */
+      }
+
+      .section-heading {
+        text-align: center;
+        margin-bottom: 3rem;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .section-heading h2 {
+        font-size: 2.8rem;
+        color: var(--text-light);
+        position: relative;
+        display: inline-block;
+        padding-bottom: 10px;
+      }
+
+      .section-heading h2::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background-color: var(--light-purple); /* Underline in purple */
+        border-radius: 2px;
+      }
+
+      /* --- Header & Navigation --- */
+      .header {
+        background-color: var(--primary-dark);
+        padding: 15px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Darker shadow */
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-family: var(--font-heading);
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--light-purple);
+        letter-spacing: 1px;
+      }
+
+      .logo span {
+        color: var(--accent-gold);
+      }
+
+      .nav-links {
+        display: flex;
+      }
+
+      .nav-links li {
+        margin-left: 30px;
+      }
+
+      .nav-links a {
+        color: var(--text-light); /* Nav links are light */
+        font-weight: 600;
+        font-size: 1.05rem;
+        position: relative;
+        padding-bottom: 5px;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--accent-purple); /* Purple underline */
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .nav-links a.active::after {
+        width: 100%;
+        background-color: var(--accent-gold); /* Active link in gold */
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 5px;
+      }
+
+      .hamburger span {
+        height: 3px;
+        width: 25px;
+        background-color: var(--text-light); /* Hamburger lines are light */
+        margin-bottom: 4px;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+
+      /* --- Hero Section --- */
+      .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.175), rgba(0, 0, 0, 0.6)),
+          url("https://scontent.fnag12-1.fna.fbcdn.net/v/t39.30808-6/469088159_122196418142230333_5145586165003846536_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=LmrZb8xMUrIQ7kNvwEwWklM&_nc_oc=AdlXROmSWFXG21k5yh_5eFO9u1UWkz_UX5Ab1HSs81ivsgiPr9O34_7owgov8Uac1dw&_nc_zt=23&_nc_ht=scontent.fnag12-1.fna&_nc_gid=QfC0sRmatGrMlVu0Z-UxiA&oh=00_AfSp15ExjTBMiaohWtNSoMfkUjYz-Lh5txoegD3Py63NwQ&oe=68768D3F")
+            no-repeat center center/cover; /* New dark hero image */
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--text-light);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        padding: 20px;
+        animation: fadeIn 1.5s ease-out forwards;
+      }
+
+      .hero-content h1 {
+        font-size: 4.5rem;
+        margin-bottom: 1rem;
+        color: var(--text-light);
+        line-height: 1.1;
+        animation: slideInUp 1s ease-out forwards;
+        opacity: 0;
+        animation-delay: 0.5s;
+      }
+
+      .hero-content p {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        color: var(--light-purple); /* Sub-text in light purple */
+        animation: slideInUp 1s ease-out forwards;
+        opacity: 0;
+        animation-delay: 0.8s;
+      }
+
+      .hero-content .btn {
+        animation: fadeIn 1s ease-out forwards;
+        opacity: 0;
+        animation-delay: 1.2s;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideInUp {
+        from {
+          transform: translateY(50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      /* --- About Us Section --- */
+      .about {
+        padding: 80px 0;
+        background-color: var(
+          --secondary-dark
+        ); /* Darker background for about */
+      }
+
+      .about-content {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+
+      .about-image {
+        flex: 1;
+        min-width: 300px;
+        text-align: center;
+      }
+
+      .about-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Darker shadow */
+        transition: transform 0.3s ease;
+      }
+
+      .about-image img:hover {
+        transform: scale(1.02);
+      }
+
+      .about-text {
+        flex: 2;
+        min-width: 300px;
+        color: var(--text-mid); /* Text color for about */
+      }
+
+      .about-text h3 {
+        font-size: 2.2rem;
+        color: var(--accent-purple); /* Heading in purple */
+        margin-bottom: 1.5rem;
+      }
+
+      /* --- Services Section --- */
+      .services {
+        padding: 80px 0;
+        background-color: var(--primary-dark);
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+      }
+
+      .service-card {
+        background-color: var(
+          --secondary-dark
+        ); /* Service cards are secondary dark */
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+      }
+
+      .service-card i {
+        font-size: 3.5rem;
+        color: var(--light-purple); /* Icons in light purple */
+        margin-bottom: 20px;
+        transition: color 0.3s ease;
+      }
+
+      .service-card:hover i {
+        color: var(--accent-gold);
+      }
+
+      .service-card h3 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        color: var(--text-light); /* Service heading light */
+      }
+
+      .service-card p {
+        font-size: 0.95rem;
+        color: var(--text-mid); /* Service text mid */
+      }
+
+      /* --- Gallery Section --- */
+      .gallery {
+        padding: 80px 0;
+        background-color: var(
+          --accent-purple
+        ); /* Gallery section uses the main purple accent */
+      }
+
+      .gallery .section-heading h2 {
+        color: var(--text-light);
+      }
+      .gallery .section-heading h2::after {
+        background-color: var(--light-gold); /* Underline is light gold */
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+      }
+
+      .gallery-item {
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        position: relative;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.05);
+      }
+
+      .gallery-item::after {
+        content: "\f002"; /* Font Awesome search icon */
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--text-light); /* Icon in light text */
+        font-size: 2.5rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        background-color: rgba(0, 0, 0, 0.6); /* Darker overlay */
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .gallery-item:hover::after {
+        opacity: 1;
+      }
+
+      /* Lightbox */
+      .lightbox {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9); /* More opaque background */
+        justify-content: center;
+        align-items: center;
+      }
+
+      .lightbox-content {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: var(--text-light); /* Close button light */
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .lightbox-close:hover {
+        color: var(--accent-gold);
+      }
+
+      /* --- Testimonials Section --- */
+      .testimonials {
+        padding: 80px 0;
+        background-color: var(
+          --secondary-dark
+        ); /* Testimonials section secondary dark */
+      }
+
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .testimonial-card {
+        background-color: var(
+          --primary-dark
+        ); /* Testimonial cards are primary dark */
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        color: var(--text-mid); /* Text for testimonials */
+      }
+
+      .testimonial-card::before {
+        content: "\f10d"; /* Font Awesome quote-left icon */
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 3rem;
+        color: var(--accent-purple); /* Quote icon in purple */
+        opacity: 0.2;
+        z-index: 0;
+      }
+
+      .client-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .client-info img {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid var(--light-purple); /* Border in light purple */
+        margin-bottom: 10px;
+        box-shadow: 0 0 0 5px rgba(182, 85, 227, 0.3); /* Purple glow effect */
+      }
+
+      .client-info h4 {
+        font-size: 1.3rem;
+        margin: 0;
+        color: var(--text-light); /* Client name light */
+      }
+
+      .testimonial-card p {
+        font-style: italic;
+        font-size: 1rem;
+        color: var(--text-mid);
+        margin-bottom: 0;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* --- Contact Section --- */
+      .contact {
+        padding: 80px 0;
+        background-color: var(--primary-dark);
+      }
+
+      .contact-content {
+        display: flex;
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+
+      .contact-form-container {
+        flex: 2;
+        min-width: 300px;
+        background-color: var(
+          --secondary-dark
+        ); /* Contact form container secondary dark */
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .contact-form h3 {
+        font-size: 2rem;
+        color: var(--light-purple); /* Form heading in light purple */
+        margin-bottom: 25px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: var(--text-light); /* Label text light */
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #444; /* Darker border */
+        background-color: var(--primary-dark); /* Input background dark */
+        color: var(--text-light); /* Input text light */
+        border-radius: 5px;
+        font-family: var(--font-body);
+        font-size: 1rem;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        border-color: var(--accent-purple);
+        box-shadow: 0 0 0 3px rgba(155, 44, 199, 0.3); /* Purple focus glow */
+        outline: none;
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      .contact-info-map {
+        flex: 1;
+        min-width: 300px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .contact-info {
+        background-color: var(
+          --accent-purple
+        ); /* Contact info block in accent purple */
+        color: var(--text-light);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .contact-info h3 {
+        color: var(--text-light);
+        margin-bottom: 20px;
+        font-size: 1.8rem;
+      }
+
+      .contact-info p {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        font-size: 1.05rem;
+        color: var(--text-light);
+      }
+
+      .contact-info p i {
+        margin-right: 15px;
+        font-size: 1.5rem;
+        color: var(--light-gold);
+      }
+
+      .google-map {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        flex-grow: 1;
+      }
+
+      .google-map iframe {
+        width: 100%;
+        height: 100%;
+        min-height: 300px; /* Ensure map is visible on smaller screens */
+        border: 0;
+        filter: grayscale(100%) invert(90%); /* Darken map for dark theme */
+      }
+
+      /* --- Footer --- */
+      .footer {
+        background-color: var(--primary-dark);
+        color: var(--text-mid);
+        padding: 60px 0 20px;
+        font-size: 0.95rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .footer-col h3 {
+        color: var(--light-purple);
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+      }
+
+      .footer-col p,
+      .footer-col li {
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 10px;
+      }
+
+      .footer-col a {
+        color: rgba(255, 255, 255, 0.6);
+        transition: color 0.3s ease;
+      }
+
+      .footer-col a:hover {
+        color: var(--accent-gold);
+      }
+
+      .footer-col ul li i {
+        margin-right: 10px;
+        color: var(--light-purple);
+      }
+
+      .social-links {
+        display: flex;
+        margin-top: 15px;
+      }
+
+      .social-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--text-light);
+        border-radius: 50%;
+        margin-right: 10px;
+        font-size: 1.2rem;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+
+      .social-links a:hover {
+        background-color: var(--light-purple);
+        transform: translateY(-3px);
+        color: var(--text-light);
+      }
+
+      .newsletter-form {
+        display: flex;
+        margin-top: 15px;
+      }
+      .newsletter-form input {
+        flex-grow: 1;
+        padding: 10px;
+        border: 1px solid #444;
+        background-color: #333;
+        color: var(--text-light);
+        border-radius: 5px 0 0 5px;
+        outline: none;
+      }
+      .newsletter-form button {
+        border-radius: 0 5px 5px 0;
+        padding: 10px 15px;
+        font-size: 0.9rem;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      /* --- Responsive Design --- */
+      @media (max-width: 992px) {
+        .hero-content h1 {
+          font-size: 3.5rem;
+        }
+        .hero-content p {
+          font-size: 1.2rem;
+        }
+
+        .about-content,
+        .contact-content {
+          flex-direction: column;
+        }
+        .about-image,
+        .about-text,
+        .contact-form-container,
+        .contact-info-map {
+          min-width: unset;
+          width: 100%;
+        }
+        .contact-info-map {
+          gap: 20px;
+        }
+        .google-map iframe {
+          min-height: 250px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          flex-wrap: wrap;
+        }
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          width: 100%;
+          background-color: var(--primary-dark);
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+          position: absolute;
+          top: 70px; /* Adjust based on header height */
+          left: 0;
+          padding: 20px 0;
+          border-top: 1px solid #444;
+        }
+        .nav-links.active {
+          display: flex;
+        }
+        .nav-links li {
+          margin: 10px 0;
+          text-align: center;
+        }
+        .nav-links a {
+          padding: 10px 0;
+          display: block;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .hamburger.active span:nth-child(1) {
+          transform: translateY(7px) rotate(45deg);
+        }
+        .hamburger.active span:nth-child(2) {
+          opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+          transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .hero {
+          height: 80vh;
+        }
+        .hero-content h1 {
+          font-size: 3rem;
+        }
+        .hero-content p {
+          font-size: 1rem;
+        }
+
+        .section-heading h2 {
+          font-size: 2.2rem;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .social-links {
+          justify-content: center;
+        }
+        .newsletter-form {
+          justify-content: center;
+          padding: 0 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-content h1 {
+          font-size: 2.5rem;
+        }
+        .hero-content p {
+          font-size: 0.9rem;
+        }
+        .btn {
+          padding: 10px 20px;
+          font-size: 0.9rem;
+        }
+        .logo {
+          font-size: 1.8rem;
+        }
+        .section-heading h2 {
+          font-size: 1.8rem;
+        }
+        .service-card h3 {
+          font-size: 1.5rem;
+        }
+        .testimonial-card p {
+          font-size: 0.9rem;
+        }
+        .contact-form h3 {
+          font-size: 1.8rem;
+        }
+        .contact-info h3 {
+          font-size: 1.6rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <nav class="navbar">
+          <a href="#" class="logo">Somlata<span>Makaover</span></a>
+          <ul class="nav-links">
+            <li><a href="#hero" class="active">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section id="hero" class="hero">
+        <div class="hero-content">
+          <h1>Somlata Makeover</h1>
+          <p>Experience Elegance in Every Touch</p>
+          <a href="#contact" class="btn">Book Your Appointment</a>
+        </div>
+      </section>
+
+      <section id="about" class="about">
+        <div class="container">
+          <div class="section-heading">
+            <h2>About Us</h2>
+          </div>
+          <div class="about-content">
+            <div class="about-image">
+              <img
+                src="https://scontent.fnag12-1.fna.fbcdn.net/v/t39.30808-6/428613319_122093575490230333_6631459839573854926_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=syw5QEtLsHgQ7kNvwFX5PM5&_nc_oc=Adn3giuM7gHuIwXxNaeR8RZQkUN-xo2BtGYRGrrsEKAA35UcKwQmXqo4hYpeIgnnDdQ&_nc_zt=23&_nc_ht=scontent.fnag12-1.fna&_nc_gid=72BALzXX94TdfETRhLoFhg&oh=00_AfRK0HiVHZifedvGPrHupVzMpprsC0cKyxf856LzGelzPA&oe=68769F76"
+                alt="About Aura Beauty Lounge"
+              />
+            </div>
+            <div class="about-text">
+              <h3>Unveiling Your Inner Radiance</h3>
+              <p>
+                Welcome to Aura Beauty Lounge, a sanctuary where luxury meets
+                personal transformation. We believe that beauty is an art, and
+                every client is a unique canvas. Our passion is to enhance your
+                natural allure, leaving you feeling refreshed, confident, and
+                radiant.
+              </p>
+              <p>
+                Our team of expert stylists and therapists is dedicated to
+                providing an unparalleled experience. We meticulously select
+                premium products and employ cutting-edge techniques to ensure
+                every service, from bespoke makeovers to indulgent spa
+                treatments, is tailored to your desires.
+              </p>
+              <p>
+                Step into Aura Beauty Lounge and embark on a journey of serene
+                indulgence. Let us illuminate your beauty and elevate your
+                spirit.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="services">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Our Divine Services</h2>
+          </div>
+          <div class="services-grid">
+            <div class="service-card">
+              <i class="fas fa-brush"></i>
+              <h3>Artistic Makeup</h3>
+              <p>
+                From glamorous event makeup to subtle everyday enhancements, we
+                craft your perfect look.
+              </p>
+            </div>
+            <div class="service-card">
+              <i class="fas fa-cut"></i>
+              <h3>Hair Couture</h3>
+              <p>
+                Innovative cuts, vibrant color, and exquisite styling for every
+                occasion.
+              </p>
+            </div>
+            <div class="service-card">
+              <i class="fas fa-spa"></i>
+              <h3>Luxurious Skincare</h3>
+              <p>
+                Revitalizing facials and advanced treatments for a flawless,
+                youthful complexion.
+              </p>
+            </div>
+            <div class="service-card">
+              <i class="fas fa-hand-sparkles"></i>
+              <h3>Manicure & Pedicure</h3>
+              <p>
+                Indulgent hand and foot rituals that soothe, soften, and
+                beautify.
+              </p>
+            </div>
+            <div class="service-card">
+              <i class="fas fa-eye"></i>
+              <h3>Eye Enhancements</h3>
+              <p>
+                Lash lifts, tints, extensions, and brow shaping to frame your
+                eyes perfectly.
+              </p>
+            </div>
+            <div class="service-card">
+              <i class="fas fa-female"></i>
+              <h3>Body Sculpting & Hair Removal</h3>
+              <p>Professional waxing and threading for silky-smooth skin.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery" class="gallery">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Our Transformations</h2>
+          </div>
+          <div class="gallery-grid">
+            <div class="gallery-item">
+              <img
+                src="https://images.unsplash.com/photo-1590486166067-211224221f54?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Gallery Image 1"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="https://images.unsplash.com/photo-1596462502278-27ddab0a2870?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Gallery Image 2"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="https://images.unsplash.com/photo-1574843936611-d00d2870c915?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Gallery Image 3"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="https://images.unsplash.com/photo-1560965005-926c48e89f81?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Gallery Image 4"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="https://images.unsplash.com/photo-1590486166067-211224221f54?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Gallery Image 5"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="https://images.unsplash.com/photo-1574843936611-d00d2870c915?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Gallery Image 6"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">×</span>
+        <img
+          class="lightbox-content"
+          id="lightbox-img"
+          src=""
+          alt="Lightbox Image"
+        />
+      </div>
+
+      <section id="testimonials" class="testimonials">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Voices of Our Clients</h2>
+          </div>
+          <div class="testimonial-grid">
+            <div class="testimonial-card">
+              <div class="client-info">
+                <img
+                  src="https://randomuser.me/api/portraits/women/68.jpg"
+                  alt="Client 1"
+                />
+                <h4>Elara Vance</h4>
+              </div>
+              <p>
+                "Aura Beauty Lounge brought my vision to life for my special
+                event! The makeup was exquisite and felt incredibly light. Truly
+                an artist's touch!"
+              </p>
+            </div>
+            <div class="testimonial-card">
+              <div class="client-info">
+                <img
+                  src="https://randomuser.me/api/portraits/women/79.jpg"
+                  alt="Client 2"
+                />
+                <h4>Seraphina Thorne</h4>
+              </div>
+              <p>
+                "The atmosphere here is pure bliss. My skin feels reborn after
+                every facial. The staff's professionalism and warmth are
+                unmatched."
+              </p>
+            </div>
+            <div class="testimonial-card">
+              <div class="client-info">
+                <img
+                  src="https://randomuser.me/api/portraits/women/81.jpg"
+                  alt="Client 3"
+                />
+                <h4>Lyra Stardust</h4>
+              </div>
+              <p>
+                "They gave me the dreamiest hairstyle for my photoshoot. It was
+                exactly what I imagined, only better! The talent at Aura is
+                exceptional."
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Connect With Us</h2>
+          </div>
+          <div class="contact-content">
+            <div class="contact-form-container">
+              <form class="contact-form" action="#" method="POST">
+                <h3>Send Us a Message</h3>
+                <div class="form-group">
+                  <label for="name">Your Name</label>
+                  <input type="text" id="name" name="name" required />
+                </div>
+                <div class="form-group">
+                  <label for="email">Your Email</label>
+                  <input type="email" id="email" name="email" required />
+                </div>
+                <div class="form-group">
+                  <label for="subject">Subject</label>
+                  <input type="text" id="subject" name="subject" />
+                </div>
+                <div class="form-group">
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+              </form>
+            </div>
+            <div class="contact-info-map">
+              <div class="contact-info">
+                <h3>Find Us Here</h3>
+                <p>
+                  <i class="fas fa-map-marker-alt"></i> Celestial Plaza, Beauty
+                  Blvd, Glamour City, India
+                </p>
+                <p><i class="fas fa-phone-alt"></i> +91 98765 43210</p>
+                <p><i class="fas fa-envelope"></i> info@auralounge.com</p>
+                <p>
+                  <i class="fas fa-clock"></i> Mon - Sat: 10:00 AM - 8:00 PM
+                </p>
+              </div>
+              <div class="google-map">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.439556557618!2d79.08375637500588!3d21.139626380534293!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c0e660143891%3A0xc47e33a681c6d376!2sPriya%20Darshini%20College%20of%20Engineering!5e0!3m2!1sen!2sin!4v1701358047970!5m2!1sen!2sin"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-col">
+            <h3>Aura<span>Lounge</span></h3>
+            <p>
+              Elevating beauty and wellness to an art form. We are dedicated to
+              providing an unparalleled experience that illuminates your unique
+              radiance.
+            </p>
+            <div class="social-links">
+              <a href="#" aria-label="Facebook"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" aria-label="Twitter"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" aria-label="LinkedIn"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h3>Quick Links</h3>
+            <ul>
+              <li>
+                <i class="fas fa-caret-right"></i> <a href="#hero">Home</a>
+              </li>
+              <li>
+                <i class="fas fa-caret-right"></i> <a href="#about">About Us</a>
+              </li>
+              <li>
+                <i class="fas fa-caret-right"></i>
+                <a href="#services">Services</a>
+              </li>
+              <li>
+                <i class="fas fa-caret-right"></i>
+                <a href="#gallery">Gallery</a>
+              </li>
+              <li>
+                <i class="fas fa-caret-right"></i>
+                <a href="#testimonials">Testimonials</a>
+              </li>
+              <li>
+                <i class="fas fa-caret-right"></i>
+                <a href="#contact">Contact</a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Contact Info</h3>
+            <ul>
+              <li>
+                <i class="fas fa-map-marker-alt"></i> Celestial Plaza, Beauty
+                Blvd, Glamour City, India
+              </li>
+              <li><i class="fas fa-phone-alt"></i> +91 98765 43210</li>
+              <li><i class="fas fa-envelope"></i> info@auralounge.com</li>
+              <li>
+                <i class="fas fa-clock"></i> Mon - Sat: 10:00 AM - 8:00 PM
+              </li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Newsletter</h3>
+            <p>
+              Subscribe to our newsletter for the latest updates and exclusive
+              offers.
+            </p>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Enter your email" required />
+              <button type="submit" class="btn">Subscribe</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          © <span id="currentYear"></span> Aura Beauty Lounge. All Rights
+          Reserved.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Smooth scrolling for navigation links
+      document.querySelectorAll("nav ul li a").forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+
+          // Close mobile menu if open
+          const navLinks = document.querySelector(".nav-links");
+          const hamburger = document.querySelector(".hamburger");
+          if (navLinks.classList.contains("active")) {
+            navLinks.classList.remove("active");
+            hamburger.classList.remove("active");
+          }
+
+          // Remove active class from all and add to clicked
+          document.querySelectorAll(".nav-links a").forEach((link) => {
+            link.classList.remove("active");
+          });
+          this.classList.add("active");
+        });
+      });
+
+      // Highlight active nav link on scroll
+      const sections = document.querySelectorAll("section");
+      const navLi = document.querySelectorAll(".nav-links li a");
+
+      window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          // Adjust this value if sections are too close to each other, or if header height affects it
+          const offset = 100; // Offset to activate link a bit before the section fully hits top
+          if (pageYOffset >= sectionTop - offset) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLi.forEach((li) => {
+          li.classList.remove("active");
+          if (li.getAttribute("href").includes(current)) {
+            li.classList.add("active");
+          }
+        });
+      });
+
+      // Hamburger menu functionality
+      const hamburger = document.querySelector(".hamburger");
+      const navLinks = document.querySelector(".nav-links");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navLinks.classList.toggle("active");
+      });
+
+      // Gallery Lightbox functionality
+      const galleryItems = document.querySelectorAll(".gallery-item img");
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const lightboxClose = document.querySelector(".lightbox-close");
+
+      galleryItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          lightbox.style.display = "flex";
+          lightboxImg.src = item.src;
+        });
+      });
+
+      lightboxClose.addEventListener("click", () => {
+        lightbox.style.display = "none";
+      });
+
+      lightbox.addEventListener("click", (e) => {
+        if (e.target !== lightboxImg && e.target !== lightboxClose) {
+          // Close if clicking outside img but inside lightbox
+          lightbox.style.display = "none";
+        }
+      });
+
+      // Set current year in footer
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+    </script>
+  </body>
+</html>
