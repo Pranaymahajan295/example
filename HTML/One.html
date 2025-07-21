@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+        #main{
+            background-image: url();
+            background-repeat: no-repeat;
+            background-size: 100%;
+            
+            height: 100vh;
+            width: 100vw;
+        }
+
+        nav {
+            z-index: 999;
+            width: 300px;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            rotate: 90deg;
+            position: fixed;
+            top: 50%;
+            /* transform: translate(-50%, 0); */
+            border-radius: 20px;
+            margin-left: -80px;
+        }
+
+        a {
+            rotate: -90deg;
+            padding: 10px;
+            text-decoration: none;
+            color: rgb(24, 24, 24);
+            transition: all .4s ease-in-out;
+        }
+
+        a:hover {
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                rotate: 0deg;
+                top: 0;
+                position: relative;
+                top: 85vh;
+                margin: 5vw;
+                width: 90vw;
+
+            }
+
+            a {
+                rotate: 0deg;
+
+            }
+
+            a:hover {
+                transition: scale(1);
+
+            }
+
+            a:focus {
+                transform: scale(1.2);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <nav id="navbar">
+            <a href="two.html"><i class="fa-solid fa-house"></i></a>
+            <a href="shop"><i class="fa-solid fa-bag-shopping"></i></a>
+            <a href="index.html"><i class="fa-solid fa-cart-shopping"></i></a>
+
+        </nav>
+    </div>
+</body>
+
+</html>

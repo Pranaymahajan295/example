@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration form</title>
+    <style>
+        * {
+            font-family: Arial, sans-serif;
+        }
+
+        /* body */
+        body {
+            background: linear-gradient(rgb(70, 70, 70), rgb(103, 103, 103), rgb(53, 53, 53));
+            height: 95vh;
+            width: 92vw;
+        }
+
+        /* main section */
+        .main-section {
+            background: white;
+            width: 95vw;
+            height: 90vh;
+            border: 5px solid rgb(255, 255, 255);
+            border-radius: 20px;
+            margin-left: 1.5%;
+            margin-top: 2%;
+        }
+
+        /* Registration Name */
+        .Registration {
+            font-size: 35px;
+            margin-left: 4%;
+        }
+
+        hr {
+            background: linear-gradient(rgb(198, 103, 103), rgb(21, 75, 223), rgb(53, 53, 53));
+            height: 4px;
+            width: 40px;
+            margin-left: 4%;
+            margin-top: -2%;
+        }
+
+        /* inner form section */
+        .main-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+            margin-left: 5%;
+        }
+
+        .input {
+            height: 5vh;
+            width: 30vw;
+            font-size: 16px;
+        }
+
+        .button {
+            background: linear-gradient(rgb(67, 67, 67), rgb(85, 85, 85), rgb(76, 76, 76));
+            height: 8vh;
+            width: 80vw;
+            border-radius: 20px;
+            margin-left: 10%;
+            margin-top: 7%;
+            font-size: 20px;
+            color: white;
+        }
+
+        button:hover {
+            color: rgb(245, 152, 152);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Main Section  -->
+    <section>
+        <div class="main-section">
+            <h1 class="Registration">Registration</h1>
+            <hr>
+            <br>
+            <!-- inner form section -->
+            <form>
+                <div class="main-form">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <br>
+                        <input type="text" placeholder="Enter your name" class="input">
+                    </div>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <br>
+                        <input type="text" placeholder="Enter your username" class="input">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <br>
+                        <input type="email" placeholder="Enter your email" class="input">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <br>
+                        <input type="Password" placeholder="Enter your Password" class="input">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <br>
+                        <input type="password" placeholder="Enter your Number" class="input">
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <br>
+                        <input type="password" placeholder="Confirm your password" class="input">
+                    </div>
+                    <!-- Gender Section -->
+                    <div>
+                        <h1>Gender</h1>
+                        <input type="radio">
+                        <label>Male</label>
+                        <input type="radio">
+                        <label>Female</label>
+                        <input type="radio">
+                        <label>Prefer not to say</label>
+                    </div>
+                </div>
+
+                <button class="button">Register</button>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

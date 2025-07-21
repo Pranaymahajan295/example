@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Haldiram's - Authentic Indian Snacks & Sweets Since 1937</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        line-height: 1.6;
+        color: #333;
+      }
+
+      /* Header Styles */
+      .header {
+        background: linear-gradient(135deg, #ff6b35, #f7931e);
+        color: white;
+        padding: 1rem 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+      }
+
+      .logo {
+        font-size: 2rem;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-menu a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .nav-menu a:hover {
+        color: #fff3cd;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          url(https://media.licdn.com/dms/image/v2/C4D22AQHD_FsWImtwfQ/feedshare-shrink_800/feedshare-shrink_800/0/1654529795362?e=2147483647&v=beta&t=lh_ZnIx_-oW2nUJNh2hupzZ_ReTTEcgC-GGilwrmF_4);
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .hero-content h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        animation: fadeInUp 1s ease;
+      }
+
+      .hero-content p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        animation: fadeInUp 1s ease 0.3s both;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: #fff;
+        color: #ff6b35;
+        padding: 15px 30px;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: bold;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        animation: fadeInUp 1s ease 0.6s both;
+      }
+
+      .cta-button:hover {
+        background: #f8f9fa;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Section Styles */
+      .section {
+        padding: 5rem 0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #333;
+      }
+
+      /* About Section */
+      .about {
+        background: #f8f9fa;
+      }
+
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+
+      .about-text {
+        font-size: 1.1rem;
+        color: #666;
+      }
+
+      .about-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 1.5rem;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .stat-number {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #ff6b35;
+      }
+
+      /* Products Section */
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .product-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .product-image {
+        height: 200px;
+        background: linear-gradient(45deg, #ff6b35, #f7931e);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 3rem;
+      }
+
+      .product-content {
+        padding: 1.5rem;
+      }
+
+      .product-title {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+        color: #333;
+      }
+
+      .product-description {
+        color: #666;
+        margin-bottom: 1rem;
+      }
+
+      .product-price {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #ff6b35;
+      }
+
+      /* Locations Section */
+      .locations {
+        background: #f8f9fa;
+      }
+
+      .locations-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .location-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .location-icon {
+        font-size: 2rem;
+        color: #ff6b35;
+        margin-bottom: 1rem;
+      }
+
+      /* Contact Section */
+      .contact-form {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #ff6b35;
+      }
+
+      .submit-btn {
+        background: #ff6b35;
+        color: white;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .submit-btn:hover {
+        background: #e55a2b;
+      }
+
+      /* Footer */
+      .footer {
+        background: #333;
+        color: white;
+        padding: 3rem 0 1rem;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-section h3 {
+        margin-bottom: 1rem;
+        color: #ff6b35;
+      }
+
+      .footer-section ul {
+        list-style: none;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-section ul li a {
+        color: #ccc;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-section ul li a:hover {
+        color: white;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid #555;
+        color: #ccc;
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-menu {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .hero-content h1 {
+          font-size: 2.5rem;
+        }
+
+        .about-content {
+          grid-template-columns: 1fr;
+        }
+
+        .about-stats {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav-container">
+        <a href="#" class="logo">Haldiram's</a>
+        <ul class="nav-menu">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#locations">Locations</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1>Welcome to Haldiram's</h1>
+        <p>India's Most Trusted Name in Snacks & Sweets Since 1937</p>
+        <a href="#products" class="cta-button">Explore Our Products</a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+      <div class="container">
+        <h2 class="section-title">Our Legacy</h2>
+        <div class="about-content">
+          <div>
+            <p class="about-text">
+              Founded in 1937 by Ganga Bishan Agarwal, Haldiram's has grown from
+              a small shop in Bikaner to become India's leading manufacturer of
+              traditional Indian snacks and sweets. Our commitment to quality,
+              authenticity, and taste has made us a household name across the
+              globe.
+            </p>
+            <p class="about-text">
+              With over 80 years of experience, we continue to innovate while
+              preserving traditional recipes passed down through generations.
+              Every product is crafted with the finest ingredients and utmost
+              care.
+            </p>
+          </div>
+          <div class="about-stats">
+            <div class="stat-item">
+              <div class="stat-number">80+</div>
+              <div>Years of Excellence</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">400+</div>
+              <div>Products</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">50+</div>
+              <div>Countries</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">1000+</div>
+              <div>Retail Outlets</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="section">
+      <div class="container">
+        <h2 class="section-title">Our Signature Products</h2>
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image">🥨</div>
+            <div class="product-content">
+              <h3 class="product-title">Bhujia & Namkeens</h3>
+              <p class="product-description">
+                Crispy, spicy, and flavorful traditional Indian snacks made with
+                authentic spices and ingredients.
+              </p>
+              <div class="product-price">Starting ₹50</div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-image">🍬</div>
+            <div class="product-content">
+              <h3 class="product-title">Traditional Sweets</h3>
+              <p class="product-description">
+                Authentic Indian mithai including rasgulla, gulab jamun, and
+                seasonal specialties.
+              </p>
+              <div class="product-price">Starting ₹200</div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-image">🍘</div>
+            <div class="product-content">
+              <h3 class="product-title">Ready-to-Eat Meals</h3>
+              <p class="product-description">
+                Convenient and delicious Indian meals that are ready in minutes
+                without compromising on taste.
+              </p>
+              <div class="product-price">Starting ₹80</div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-image">🥤</div>
+            <div class="product-content">
+              <h3 class="product-title">Beverages & Drinks</h3>
+              <p class="product-description">
+                Refreshing traditional Indian drinks including lassi, chaas, and
+                fruit juices.
+              </p>
+              <div class="product-price">Starting ₹30</div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-image">🍪</div>
+            <div class="product-content">
+              <h3 class="product-title">Cookies & Biscuits</h3>
+              <p class="product-description">
+                Premium cookies and biscuits with traditional and modern flavors
+                for all occasions.
+              </p>
+              <div class="product-price">Starting ₹40</div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-image">🎂</div>
+            <div class="product-content">
+              <h3 class="product-title">Festive Specials</h3>
+              <p class="product-description">
+                Special sweets and snacks for festivals including Diwali, Holi,
+                and other celebrations.
+              </p>
+              <div class="product-price">Starting ₹300</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section id="locations" class="section locations">
+      <div class="container">
+        <h2 class="section-title">Find Us Near You</h2>
+        <div class="locations-grid">
+          <div class="location-card">
+            <div class="location-icon">📍</div>
+            <h3>Delhi NCR</h3>
+            <p>Multiple outlets across Delhi, Gurgaon, and Noida</p>
+          </div>
+          <div class="location-card">
+            <div class="location-icon">📍</div>
+            <h3>Mumbai</h3>
+            <p>Premium stores in major shopping centers</p>
+          </div>
+          <div class="location-card">
+            <div class="location-icon">📍</div>
+            <h3>Bangalore</h3>
+            <p>Modern outlets with complete product range</p>
+          </div>
+          <div class="location-card">
+            <div class="location-icon">📍</div>
+            <h3>Kolkata</h3>
+            <p>Traditional stores serving authentic flavors</p>
+          </div>
+          <div class="location-card">
+            <div class="location-icon">🌐</div>
+            <h3>Online Delivery</h3>
+            <p>Pan-India delivery through our website and apps</p>
+          </div>
+          <div class="location-card">
+            <div class="location-icon">✈️</div>
+            <h3>International</h3>
+            <p>Available in 50+ countries worldwide</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <form class="contact-form">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#products">Products</a></li>
+              <li><a href="#locations">Store Locator</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Products</h3>
+            <ul>
+              <li><a href="#">Namkeens</a></li>
+              <li><a href="#">Sweets</a></li>
+              <li><a href="#">Ready-to-Eat</a></li>
+              <li><a href="#">Beverages</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Customer Service</h3>
+            <ul>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Returns</a></li>
+              <li><a href="#">Feedback</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Contact Info</h3>
+            <ul>
+              <li>📞 1800-123-4567</li>
+              <li>✉️ info@haldirams.com</li>
+              <li>📍 Bikaner, Rajasthan</li>
+              <li>🕐 Mon-Sat 9AM-8PM</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2025 Haldiram's. All rights reserved. | Quality is our
+            tradition since 1937
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Form submission handler
+      document
+        .querySelector(".contact-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("Thank you for your message! We will get back to you soon.");
+          this.reset();
+        });
+
+      // Add scroll effect to header
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector(".header");
+        if (window.scrollY > 100) {
+          header.style.background = "rgba(255, 107, 53, 0.95)";
+        } else {
+          header.style.background = "linear-gradient(135deg, #ff6b35, #f7931e)";
+        }
+      });
+    </script>
+  </body>
+</html>
