@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Calculator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
+            height: 60vh;
+            width: 22.5vw;
+            min-width: 320px;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid #333;
+        }
+
+        .display {
+            height: 100px;
+            width: 100%;
+            background: linear-gradient(145deg, #f0f8ff, #e6f3ff);
+            color: #2c2c2c;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            font-size: 2.5rem;
+            border-radius: 15px;
+            padding: 0 20px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            overflow: hidden;
+            word-wrap: break-word;
+        }
+
+        .key {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            justify-content: center;
+        }
+
+        .button {
+            background: linear-gradient(145deg, #4a4a4a, #2c2c2c);
+            height: 8vh;
+            width: 5vw;
+            min-width: 60px;
+            min-height: 50px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(145deg, #5a5a5a, #3c3c3c);
+        }
+
+        .button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .or_button {
+            background: linear-gradient(145deg, #ff6b35, #f7931e);
+            height: 8vh;
+            width: 5vw;
+            min-width: 60px;
+            min-height: 50px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .or_button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(145deg, #ff7b45, #ff831e);
+        }
+
+        .or_button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="display" id="display">0</div>
+        
+        <div class="key">
+            <button class="button" onclick="clearDisplay()">C</button>
+            <button class="button" onclick="toggleSign()">+/-</button>
+            <button class="button" onclick="appendToDisplay('%')">%</button>
+            <button class="or_button" onclick="appendToDisplay('÷')">÷</button>
+        </div>
+        
+        <div class="key">
+            <button class="button" onclick="appendToDisplay('7')">7</button>
+            <button class="button" onclick="appendToDisplay('8')">8</button>
+            <button class="button" onclick="appendToDisplay('9')">9</button>
+            <button class="or_button" onclick="appendToDisplay('×')">×</button>
+        </div>
+        
+        <div class="key">
+            <button class="button" onclick="appendToDisplay('4')">4</button>
+            <button class="button" onclick="appendToDisplay('5')">5</button>
+            <button class="button" onclick="appendToDisplay('6')">6</button>
+            <button class="or_button" onclick="appendToDisplay('-')">-</button>
+        </div>
+        
+        <div class="key">
+            <button class="button" onclick="appendToDisplay('1')">1</button>
+            <button class="button" onclick="appendToDisplay('2')">2</button>
+            <button class="button" onclick="appendToDisplay('3')">3</button>
+            <button class="or_button" onclick="appendToDisplay('+')">+</button>
+        </div>
+        
+        <div class="key">
+            <button class="button" onclick="deleteLast()">⌫</button>
+            <button class="button" onclick="appendToDisplay('0')">0</button>
+            <button class="button" onclick="appendToDisplay('.')">.</button>
+            <button class="or_button" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script>
+        let currentInput = '0';
+        let shouldResetDisplay = false;
+
+        function updateDisplay() {
+            const display = document.getElementById('display');
+            // Limit display length to prevent overflow
+            if (currentInput.length > 12) {
+                display.textContent = parseFloat(currentInput).toExponential(5);
+            } else {
+                display.textContent = currentInput;
+            }
+        }
+
+        function appendToDisplay(value) {
+            if (shouldResetDisplay) {
+                currentInput = '0';
+                shouldResetDisplay = false;
+            }
+
+            if (currentInput === '0' && value !== '.') {
+                currentInput = value;
+            } else {
+                // Prevent multiple operators in a row
+                const lastChar = currentInput.slice(-1);
+                const operators = ['+', '-', '×', '÷', '%'];
+                
+                if (operators.includes(lastChar) && operators.includes(value)) {
+                    currentInput = currentInput.slice(0, -1) + value;
+                } else if (value === '.' && currentInput.includes('.')) {
+                    // Prevent multiple decimal points in the same number
+                    const parts = currentInput.split(/[+\-×÷%]/);
+                    const lastPart = parts[parts.length - 1];
+                    if (lastPart.includes('.')) {
+                        return;
+                    }
+                    currentInput += value;
+                } else {
+                    currentInput += value;
+                }
+            }
+            updateDisplay();
+        }
+
+        function clearDisplay() {
+            currentInput = '0';
+            updateDisplay();
+        }
+
+        function deleteLast() {
+            if (currentInput.length > 1) {
+                currentInput = currentInput.slice(0, -1);
+            } else {
+                currentInput = '0';
+            }
+            updateDisplay();
+        }
+
+        function toggleSign() {
+            if (currentInput !== '0') {
+                if (currentInput.startsWith('-')) {
+                    currentInput = currentInput.substring(1);
+                } else {
+                    currentInput = '-' + currentInput;
+                }
+                updateDisplay();
+            }
+        }
+
+        function calculate() {
+            try {
+                // Replace display symbols with JavaScript operators
+                let expression = currentInput
+                    .replace(/×/g, '*')
+                    .replace(/÷/g, '/')
+                    .replace(/%/g, '/100');
+
+                // Evaluate the expression
+                let result = eval(expression);
+                
+                // Handle special cases
+                if (!isFinite(result)) {
+                    currentInput = 'Error';
+                } else {
+                    // Round to avoid floating point precision issues
+                    result = Math.round(result * 100000000) / 100000000;
+                    currentInput = result.toString();
+                }
+                
+                shouldResetDisplay = true;
+            } catch (error) {
+                currentInput = 'Error';
+                shouldResetDisplay = true;
+            }
+            updateDisplay();
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', function(event) {
+            const key = event.key;
+            
+            if (key >= '0' && key <= '9') {
+                appendToDisplay(key);
+            } else if (key === '.') {
+                appendToDisplay('.');
+            } else if (key === '+') {
+                appendToDisplay('+');
+            } else if (key === '-') {
+                appendToDisplay('-');
+            } else if (key === '*') {
+                appendToDisplay('×');
+            } else if (key === '/') {
+                event.preventDefault();
+                appendToDisplay('÷');
+            } else if (key === '%') {
+                appendToDisplay('%');
+            } else if (key === 'Enter' || key === '=') {
+                calculate();
+            } else if (key === 'Escape' || key === 'c' || key === 'C') {
+                clearDisplay();
+            } else if (key === 'Backspace') {
+                deleteLast();
+            }
+        });
+
+        // Initialize display
+        updateDisplay();
+    </script>
+</body>
+
+</html>
