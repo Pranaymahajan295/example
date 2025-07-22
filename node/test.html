@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Form</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+        color: #333;
+        padding: 40px 20px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .container {
+        max-width: 600px;
+        width: 100%;
+        background: #fff;
+        padding: 30px 20px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+        color: #222;
+        margin-bottom: 20px;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 16px;
+      }
+
+      button {
+        padding: 10px 20px;
+        margin: 10px 5px 0 0;
+        background-color: #2d4258;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #091f37;
+      }
+
+      #output {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #e8f0fe;
+        border-left: 4px solid #007bff;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- main container -->
+    <div class="container">
+      <h1>Student Info</h1>
+      <input type="text" id="input-name" placeholder="Enter your name..." />
+      <input
+        type="text"
+        id="input-message"
+        placeholder="Enter your message..."
+      />
+      <input
+        type="text"
+        id="input-department"
+        placeholder="Enter your department..."
+      />
+      <!-- two buttons -->
+      <div>
+        <button onclick="postMessage()">POST</button>
+        <button onclick="getMessage()">GET</button>
+      </div>
+      <!-- output -->
+      <div id="output"></div>
+    </div>
+    <!-- end main container -->
+    <!-- start script -->
+    <script>
+      // get the input fields on the page
+      async function getMessage() {
+        try {
+          const response = await fetch("http://localhost:3000/students");
+          if (!response.ok)
+            throw new Error(
+              "Error fetching data on http://localhost:port 3000/student"
+            );
+
+          const data = await response.json();
+          let output = "";
+
+          data.forEach((student) => {
+            output += `👤 Name: ${student.name} | 💬 Message: ${student.msg} | 🏢 Dept: ${student.department}<br/>`;
+          });
+
+          document.getElementById("output").innerHTML = output;
+        } catch (error) {
+          alert("Failed to load data from server.");
+          console.error(error);
+        }
+      } // end getMessage
+      //  post message to server
+      async function postMessage() {
+        const name = document.getElementById("input-name").value.trim();
+        const message = document.getElementById("input-message").value.trim();
+        const department = document.getElementById("input-department").value.trim();
+
+        if (!name || !message || !department) {
+          alert("All fields are required!");
+          return;
+        }
+
+        const payload = { name, message, department };
+
+        try {
+          const response = await fetch("http://localhost:3000/student", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+
+          if (!response.ok) throw new Error("POST failed");
+
+          alert("Data posted successfully!");
+          document.getElementById("input-name").value = "";
+          document.getElementById("input-message").value = "";
+          document.getElementById("input-department").value = "";
+        } catch (error) {
+          alert("Failed to send data to server.");
+          console.error(error);
+        }
+      }
+    </script>
+    <!-- end of script section -->
+  </body>
+</html>

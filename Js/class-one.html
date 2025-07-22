@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Info</title>
+  </head>
+  <body>
+    <h2>Student Info (Selected Fields):</h2>
+    <div id="result"></div>
+
+    <script>
+      let Studentdata = ["John", "Alice", "Bob", "Bob"];
+
+      const StudentData = [
+        {
+          name: "John", // only print name
+          age: 20,
+          class: "1st year",
+        },
+        {
+          name: "Alice",
+          age: 21, // only print age
+          class: "2nd year",
+        },
+        {
+          name: "Bob",
+          age: 19,
+          class: "3rd year", // only print class
+        },
+        {
+          name: "ayush", // print all
+          age: 18,
+          class: "4rd year",
+        },
+      ];
+      // for loop
+
+      for (let i = 0; i < StudentData.length; i++) {
+        if ((i = 0)) {
+          console.log(StudentData[i].name);
+        }
+        if ((i = 1)) {
+          console.log(StudentData[i].age);
+        }
+        if ((i = 2)) {
+          console.log(StudentData[i].class);
+        }
+        if ((i = 3)) {
+          console.log(StudentData[i]);
+        }
+      }
+      console.log(Studentdata);
+      document.getElementById("result").innerHTML += "<br>";
+    </script>
+  </body>
+</html>
