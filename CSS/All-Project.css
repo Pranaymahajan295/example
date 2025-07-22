@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 body {
@@ -127,13 +128,6 @@ body {
 .blog-post-item:hover {
   transform: translateY(-10px);
   box-shadow: 0 20px 50px hsla(0, 0%, 0%, 0.5);
-}
-
-.blog-post-link {
-  display: block;
-  height: 100%;
-  text-decoration: none;
-  color: inherit;
 }
 
 .blog-banner-box {
