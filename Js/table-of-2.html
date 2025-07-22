@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      h1 {
+        color: #c905fa;
+      }
+      button {
+        padding: 10px 15px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        background-color: #a7abaf;
+        color: white;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #4f5051;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="result"></h1>
+    <button onclick="getTable()">print table of 2</button>
+    <button onclick="getTable3()">print table of 3</button>
+    <button onclick="getTable4()">print table of 4</button>
+    <button onclick="getTable5()">print table of 5</button>
+    <script>
+      // 2 ka table print karne ke liye
+      function getTable() {
+        let table = "";
+        for (let i = 1; i <= 10; i++) {
+          console.log("2 x " + i + " = " + 2 * i);
+          table += "2 x " + i + " = " + 2 * i + "<br>";
+        }
+        document.getElementById("result").innerHTML = table;
+      }
+      // 3 ka table print karne ke liye
+      function getTable3() {
+        let table = "";
+        for (let i = 1; i <= 10; i++) {
+          console.log("3 x " + i + " = " + 3 * i);
+          table += "3 x " + i + " = " + 3 * i + "<br>";
+        }
+        document.getElementById("result").innerHTML = table;
+      }
+
+      //   4 ka table print karne ke liye
+      function getTable4() {
+        let table = "";
+        for (let i = 1; i <= 10; i++) {
+          console.log("4 x " + i + " = " + 4 * i);
+          table += "4 x " + i + " = " + 4 * i + "<br>";
+        }
+        document.getElementById("result").innerHTML = table;
+      }
+      // 5 ka table print karne ke liye
+      function getTable5() {
+        let table = "";
+        for (let i = 1; i <= 10; i++) {
+          console.log("5 x " + i + " = " + 5 * i);
+          table += "5 x " + i + " = " + 5 * i + "<br>";
+        }
+        document.getElementById("result").innerHTML = table;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rearrange Array</title>
+  </head>
+  <body>
+    <script>
+      let bike = ["Sanchit", "Pranay", "Khushal"];
+
+      for (let i = bike.length - 1; i >= 0; i--) {
+        if (i == bike.length - 1) {
+          console.log(bike[2]); 
+        } else if (i == 1) {
+          console.log(bike[0]); 
+        } else {
+          console.log(bike[1]);
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Looping Multiplication Machine</title>
+</head>
+<body>
+
+  <h2>🔁 Infinite Multiplication Game</h2>
+  <p id="question">Press Start to begin!</p>
+
+  <input type="number" id="userAnswer" placeholder="Your Answer" />
+  <button onclick="checkAnswer()">Submit</button>
+  <button onclick="startGame()">▶️ Start</button>
+  <button onclick="stopGame()">⏹ Stop</button>
+
+  <p id="result"></p>
+  <p>Total Count: <span id="count">0</span></p>
+
+  <script>
+    let num1, num2;
+    let count = 0;
+    let gameOn = false;
+
+    function startGame() {
+      if (!gameOn) {
+        gameOn = true;
+        count = 0;
+        document.getElementById("count").textContent = count;
+        generateNumbers();
+      }
+    }
+
+    function stopGame() {
+      gameOn = false;
+      document.getElementById("question").textContent = "Game stopped! Press Start to play again.";
+    }
+
+    function generateNumbers() {
+      if (!gameOn) return;
+      num1 = Math.floor(Math.random() * 10) + 1;
+      num2 = Math.floor(Math.random() * 10) + 1;
+      document.getElementById("question").textContent = `What is ${num1} × ${num2}?`;
+      document.getElementById("userAnswer").value = '';
+      document.getElementById("result").textContent = '';
+    }
+
+    function checkAnswer() {
+      if (!gameOn) return;
+
+      const userAns = parseInt(document.getElementById("userAnswer").value);
+      const correctAns = num1 * num2;
+      count++;
+
+      if (userAns === correctAns) {
+        document.getElementById("result").textContent = `✅ Correct! ${num1} × ${num2} = ${correctAns}`;
+      } else {
+        document.getElementById("result").textContent = `❌ Incorrect! ${num1} × ${num2} = ${correctAns}`;
+      }
+
+      document.getElementById("count").textContent = count;
+
+      // Generate next question after 1 second
+      setTimeout(() => {
+        if (gameOn) generateNumbers();
+      }, 1000);
+    }
+  </script>
+
+</body>
+</html>

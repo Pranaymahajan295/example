@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Temperature Check</title>
+  </head>
+  <body>
+    <script>
+      let temp = 25; // You can change this value to test different outputs
+
+      let result = 
+        temp >= 40
+        ? "It is very hot"
+        : temp >= 30
+        ? "It is hot"
+        : temp >= 20
+        ? "It is warm"
+        : temp >= 10
+        ? "It is cool"
+        : temp >= 0
+        ? "It is cold"
+        : "It is freezing";
+
+      alert(result); // This will alert the result
+      
+      // If you want to use if-else style:
+      if (temp >= 40) {
+        alert("It is very hot");
+      }
+       else if (temp >= 30) {
+        alert("It is hot");
+      }
+       else if (temp >= 20) {
+        alert("It is warm");
+      }
+       else if (temp >= 10) {
+        alert("It is cool");
+      }
+       else if (temp >= 0) {
+        alert("It is cold");
+      } else {
+        alert("It is freezing");
+      }
+    </script>
+  </body>
+</html>

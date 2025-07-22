@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enhanced Billing System</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+      }
+
+      .main-container {
+        max-width: 800px;
+        margin: auto;
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .header h1 {
+        color: #333;
+        margin: 0;
+        font-size: 2.5em;
+        font-weight: 300;
+      }
+
+      .form-container {
+        margin-bottom: 30px;
+        background: #f8f9fa;
+        padding: 25px;
+        border-radius: 10px;
+        border-left: 4px solid #667eea;
+      }
+
+      h3 {
+        color: #333;
+        margin-bottom: 20px;
+        font-size: 1.3em;
+        font-weight: 500;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      input[type="text"], input[type="number"] {
+        padding: 12px;
+        border-radius: 8px;
+        border: 2px solid #e0e0e0;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+      }
+
+      input[type="text"]:focus, input[type="number"]:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      button {
+        padding: 12px 30px;
+        border: none;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 500;
+      }
+
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .bill-container {
+        border-top: 2px solid #e0e0e0;
+        padding-top: 25px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      caption {
+        caption-side: top;
+        font-size: 1.8em;
+        font-weight: 500;
+        margin-bottom: 15px;
+        color: #333;
+      }
+
+      th, td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      th {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        font-weight: 500;
+        text-transform: uppercase;
+        font-size: 0.9em;
+        letter-spacing: 0.5px;
+      }
+
+      td {
+        background: white;
+        transition: background-color 0.3s ease;
+      }
+
+      tr:hover td {
+        background-color: #f8f9fa;
+      }
+
+      .total-row {
+        font-weight: bold;
+        background: #f8f9fa !important;
+        border-top: 2px solid #667eea;
+      }
+
+      .total-row td {
+        background: #f8f9fa !important;
+        font-size: 1.1em;
+      }
+
+      .delete-btn {
+        background: #ff4757;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 12px;
+        transition: background-color 0.3s ease;
+      }
+
+      .delete-btn:hover {
+        background: #ff3838;
+        transform: none;
+        box-shadow: none;
+      }
+
+      .summary {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border-left: 4px solid #667eea;
+      }
+
+      .summary-item {
+        text-align: center;
+      }
+
+      .summary-label {
+        font-size: 0.9em;
+        color: #666;
+        margin-bottom: 5px;
+      }
+
+      .summary-value {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .clear-btn {
+        background: #ff4757;
+        margin-left: 10px;
+      }
+
+      .clear-btn:hover {
+        background: #ff3838;
+      }
+
+      @media (max-width: 768px) {
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .main-container {
+          padding: 20px;
+        }
+        
+        .summary {
+          flex-direction: column;
+          gap: 15px;
+        }
+        
+        table {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="header">
+        <h1>🧾 Billing System</h1>
+      </div>
+      
+      <div class="form-container">
+        <h3>📝 Add Product</h3>
+        <form id="bill-form">
+          <div class="form-grid">
+            <input
+              type="text"
+              id="product-name"
+              placeholder="Product Name"
+              required
+            />
+            <input
+              type="number"
+              id="product-price"
+              placeholder="Product Price"
+              step="0.01"
+              min="0"
+              required
+            />
+            <input
+              type="number"
+              id="product-quantity"
+              placeholder="Quantity"
+              min="1"
+              required
+            />
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button type="submit">➕ Add Product</button>
+            <button type="button" class="clear-btn" onclick="clearAll()">🗑️ Clear All</button>
+          </div>
+        </form>
+      </div>
+      
+      <div class="bill-container">
+        <table>
+          <caption>📋 Invoice Details</caption>
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Price (₹)</th>
+              <th>Quantity</th>
+              <th>Total (₹)</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="bill-body">
+            <!-- Rows will be added here -->
+          </tbody>
+        </table>
+        
+        <div class="summary">
+          <div class="summary-item">
+            <div class="summary-label">Total Items</div>
+            <div class="summary-value" id="total-items">0</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Total Quantity</div>
+            <div class="summary-value" id="total-quantity">0</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Grand Total</div>
+            <div class="summary-value" id="grand-total">₹0.00</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let form = document.getElementById("bill-form");
+      let billBody = document.getElementById("bill-body");
+      let billArray = [];
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        let name = document.getElementById("product-name").value.trim();
+        let price = parseFloat(document.getElementById("product-price").value);
+        let quantity = parseInt(document.getElementById("product-quantity").value);
+
+        if (!name) return alert("Please enter product name");
+        if (isNaN(price) || price < 0) return alert("Please enter a valid price");
+        if (isNaN(quantity) || quantity < 1) return alert("Please enter a valid quantity");
+
+        let total = price * quantity;
+
+        let product = {
+          id: Date.now(), // Unique ID for each product
+          name: name,
+          price: price,
+          quantity: quantity,
+          total: total,
+        };
+
+        billArray.push(product);
+        renderBill();
+        form.reset();
+      });
+
+      function renderBill() {
+        billBody.innerHTML = "";
+        
+        billArray.forEach((product, index) => {
+          let row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${product.name}</td>
+            <td>₹${product.price.toFixed(2)}</td>
+            <td>${product.quantity}</td>
+            <td>₹${product.total.toFixed(2)}</td>
+            <td><button class="delete-btn" onclick="deleteProduct(${index})">Delete</button></td>
+          `;
+          billBody.appendChild(row);
+        });
+        
+        updateSummary();
+      }
+
+      function deleteProduct(index) {
+        billArray.splice(index, 1);
+        renderBill();
+      }
+
+      function clearAll() {
+        if (billArray.length === 0) return;
+        
+        if (confirm("Are you sure you want to clear all items?")) {
+          billArray = [];
+          renderBill();
+        }
+      }
+
+      function updateSummary() {
+        let totalItems = billArray.length;
+        let totalQuantity = billArray.reduce((sum, product) => sum + product.quantity, 0);
+        let grandTotal = billArray.reduce((sum, product) => sum + product.total, 0);
+
+        document.getElementById("total-items").textContent = totalItems;
+        document.getElementById("total-quantity").textContent = totalQuantity;
+        document.getElementById("grand-total").textContent = `₹${grandTotal.toFixed(2)}`;
+      }
+
+      // Initialize summary
+      updateSummary();
+    </script>
+  </body>
+</html>

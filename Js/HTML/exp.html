@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style></style>
+</head>
+<body>
+    <button onclick="askNumber()">start</button>
+    <p id="display"></p>
+    <script>
+  function askNumber() {
+    let sum = 5;
+    let number = Number(prompt("Enter a Number"));
+
+    if (isNaN(number)) return alert("Please enter a valid number!");
+
+    do {
+      sum += number;
+      number = Number(prompt("Enter a Number"));
+    } while (number <= 2);
+
+    document.getElementById("display").textContent = `Total sum is: ${sum}`;
+  }
+</script>
+
+    
+</body>
+</html>

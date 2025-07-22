@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise Two</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #4a4a4abf;
+      }
+
+      .main-container {
+        max-width: 700px;
+        margin: auto;
+        background: #edc72e;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-container {
+        margin-bottom: 30px;
+      }
+
+      h3 {
+        text-transform: uppercase;
+        color: #333;
+        margin-bottom: 15px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      input[type="text"] {
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+      }
+
+      button {
+        padding: 10px;
+        border: none;
+        background-color: #336abd;
+        color: white;
+        font-size: 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      
+
+      .bill-container {
+        border-top: 2px solid #ccc;
+        padding-top: 20px;
+        font-size: 18px;
+        color: #555;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      caption {
+        caption-side: top;
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      th,
+      td {
+        border: 1px solid #b0bd75;
+        padding: 12px;
+      }
+
+      th {
+        background-color: #767676c1;
+        color: #0b0b0b;
+      }
+
+      tr:nth-child(even) {
+        background-color: #61d761;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="form-container">
+        <h3>Input Data</h3>
+        <form id="bill-form">
+          <input
+            type="text"
+            id="product-name"
+            placeholder="Product Name"
+            required
+          />
+          <input
+            type="text"
+            id="product-price"
+            placeholder="Product Price"
+            required
+          />
+          <input
+            type="text"
+            id="product-quantity"
+            placeholder="Product Quantity"
+            required
+          />
+          <button type="submit">Add</button>
+        </form>
+      </div>
+      <div class="bill-container">
+        <table>
+          <caption>
+            Bill
+          </caption>
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Product Price</th>
+              <th>Product Quantity</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody id="bill-body">
+            <!-- Rows will be added here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      let form = document.getElementById("bill-form");
+      let billBody = document.getElementById("bill-body");
+      let billArray = [];
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        let name = document.getElementById("product-name").value.trim();
+        let price = parseFloat(document.getElementById("product-price").value);
+        let quantity = parseInt(
+          document.getElementById("product-quantity").value
+        );
+
+        if (!name) return alert("Enter name");
+        if (isNaN(price) || price < 0) return alert("Invalid price");
+        if (isNaN(quantity) || quantity < 0) return alert("Invalid quantity");
+
+        let total = price * quantity;
+
+        let product = {
+          name: name,
+          price: price,
+          quantity: quantity,
+          total: total,
+        };
+
+        billArray.push(product); // Add object to array
+
+        let row = document.createElement("tr");
+        row.innerHTML = `
+    <td>${product.name}</td>
+    <td>₹${product.price.toFixed(2)}</td>
+    <td>${product.quantity}</td>
+    <td>₹${product.total.toFixed(2)}</td>
+  `;
+        billBody.appendChild(row);
+
+        form.reset();
+      });
+    </script>
+  </body>
+</html>

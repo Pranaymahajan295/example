@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>New Array</h1>
+    <button onclick="myFunction()">Click me</button>
+    <input type="text" >
+
+    <script>
+         // 1. Array.from()
+         let array1 = Array.from('1,4,6,7,4,2,3,6,9,10');
+         newArray = []
+         for (let i = 0; i < newArray.length; i++) {
+             let isDupticate = false ;
+             for (let x = 0; x < new Array.length; x++) {
+                 if (array1[i] == new Array[x]) {
+                     isDupticate = true;
+                     break;
+         }
+         if (!isDupticate) {
+             new Array.push(array1[i]);
+
+           }
+        }
+      }
+      print(newArray)
+    </script>
+  </body>
+</html>

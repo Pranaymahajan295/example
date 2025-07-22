@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: #e88383;
+            height: 250px;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .display {
+            margin-bottom: 20px;
+        }
+        .btns {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="display">
+            <p id="result"></p>
+        </div>
+        <div class="btns">
+            <button onclick="showNumber(1)">1</button>
+            <button onclick="showNumber(2)">2</button>
+            <button onclick="showNumber(3)">3</button>
+            <button onclick="showNumber(4)">4</button>
+        </div>
+    </div>
+    <script>
+        function showNumber(num) {
+            document.getElementById("result").innerText += num;
+        }
+    </script>
+</body>
+</html>
+

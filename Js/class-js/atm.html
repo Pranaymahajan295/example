@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Withdraw Balance</title>
+</head>
+<body>
+  <p id="show-balance"></p>
+  <input type="number" id="input-amount" placeholder="Enter amount" />
+  <button onclick="withdraw()">Withdraw</button>
+
+  <script>
+    let balance = 1000;
+    let balancePara = document.getElementById("show-balance");
+    balancePara.innerText = "Your balance is: $" + balance;
+
+    function withdraw() {
+      let amount = Number(document.getElementById("input-amount").value);
+
+      if (amount <= 0 || isNaN(amount)) {
+        alert("Please enter a valid amount");
+      } 
+      else if (amount > balance) {
+        alert("Insufficient balance");
+      } 
+      else {
+        balance -= amount;
+        balancePara.innerText = "Your balance is: $" + balance;
+        alert("Withdrawal successful! $" + amount + " deducted.");
+      }
+    }
+  </script>
+</body>
+</html>

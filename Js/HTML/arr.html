@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Unique Array Example</title>
+</head>
+<body>
+  <h1>New Array</h1>
+  <button onclick="myFunction()">Click me</button>
+  <input type="text" id="output" readonly />
+
+  <script>
+    function myFunction() {
+      // Convert comma-separated string to array of numbers
+      let array1 = '1,4,6,7,4,2,3,6,9,10'.split(',').map(Number);
+
+      let newArray = [];
+
+      for (let i = 0; i < array1.length; i++) {
+        let isDuplicate = false;
+
+        for (let j = 0; j < newArray.length; j++) {
+          if (array1[i] === newArray[j]) {
+            isDuplicate = true;
+            break;
+          }
+        }
+
+        if (!isDuplicate) {
+          newArray.push(array1[i]);
+        }
+      }
+
+      console.log("Unique Array:", newArray);
+
+      // Show result in input box
+      document.getElementById("output").value = newArray.join(', ');
+    }
+  </script>
+</body>
+</html>

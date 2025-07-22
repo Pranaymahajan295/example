@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="display">hello</p>
+    <script>
+        let i = -10 ;
+        while (i <= 10){
+            if (i < 1){
+                display += i + "";
+            }
+            else {
+                display += "+" + i ;
+            }
+            i++
+        }
+        
+
+        console.log(display);
+      document.getElementById("display").textContent = display;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food ordering system</title>
+  </head>
+  <body>
+    <pre>
+1. Pizza     $10.00   
+2. Burger    $80.00
+3. Pasta     $12.00
+4. Salad     $70.00
+5. Sandwich  $90.00
+Enter 0 to finish your order.
+    </pre>
+    <button onclick="orderFood()">Food Ordering System</button>
+    <h1 id="total">Food Ordering System</h1>
+    <script>
+      let total = 0;
+
+      function orderFood() {
+        while (true) {
+          let choice = prompt("Enter the item number to order (0 to finish):");
+
+          if (choice == "0") {
+            break;
+          } else if (choice == "1") {
+            total += 10;
+            alert("Pizza added to your order.");
+          } else if (choice == "2") {
+            total += 80;
+            alert("Burger added to your order.");
+          } else if (choice == "3") {
+            total += 12;
+            alert("Pasta added to your order.");
+          } else if (choice == "4") {
+            total += 70;
+            alert("Salad added to your order.");
+          } else if (choice == "5") {
+            total += 90;
+            alert("Sandwich added to your order.");
+          } else {
+            alert("Invalid choice. Please try again.");
+          }
+        }
+
+        document.getElementById("total").innerText =
+          "Total: $" + total.toFixed(2);
+      }
+
+      // Run the function on page load
+      orderFood();
+    </script>
+  </body>
+</html>

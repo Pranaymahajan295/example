@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>String and Number Collector</title>
+</head>
+<body>
+  <h2>Collected Values:</h2>
+  <div id="display"></div>
+
+  <script>
+    let array = [];
+    let stringCount = 0;
+    let numberCount = 0;
+
+    while (stringCount < 4 || numberCount < 4) {
+      let input = prompt("Enter a string or number (or 'q' to quit):");
+
+      if (input === null || input.toLowerCase() === "q") {
+        break; // End loop if user enters 'q' or clicks Cancel
+      }
+
+      // Check if it's a number
+      if (!isNaN(input) && input.trim() !== "" && numberCount < 4) {
+        array.push(Number(input));
+        numberCount++;
+      }
+      // Check if it's a string
+      else if (isNaN(input) && stringCount < 4) {
+        array.push(input);
+        stringCount++;
+      }
+      // Too many of one type
+      else {
+        alert("You've already entered 2 of that type, or the input is invalid.");
+      }
+    }
+
+    document.getElementById("display").innerHTML = array.join(", ");
+    console.log(array);
+  </script>
+</body>
+</html>

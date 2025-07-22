@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .main-container{
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(97, 63, 210, 0.557);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container{
+        width: 20%;
+        height: 40%;
+        background-color: aliceblue;
+        display: flex;
+        align-items: center;
+    } 
+    .display{
+        width: 100%;
+        height: 100px;
+        background-color: black;
+        position: relative;
+        left: 70px;
+        bottom: 40px;
+    }
+    .buttons{
+        width: 100%;
+        height: 10%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        position: relative;
+        top:100px;
+        right: 60px;
+    }
+    
+</style>
+<body>
+    <div class="main-container">
+        <div class="container">
+            <div class="display">
+                <h1 style="text-align: center; position: relative; top: 30px; color: aliceblue;" id="display">1</h1>
+            </div>
+            <div class="buttons">
+               <button id="addCoin" onclick="addCoin()">AddCoin</button>
+               <button id="subCoin" onclick="subCoin()">SubCoin</button>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</body>
+<script>
+ let coin = 1;
+ let display = document.getElementById('display')
+
+
+function addCoin() {
+    let AddCoins = prompt('Enter Coin to be added ')
+    display.innerText = coin = Number(coin) + Number(AddCoins)
+    
+}
+
+function subCoin() {
+    let SubCoin = prompt('Enter Coin to be Subtracted ')
+    display.innerText = coin = Number(coin) - Number(SubCoin)
+}
+if(coin <= 0){
+    alert("invalid")
+}
+
+
+</script>
+</html>

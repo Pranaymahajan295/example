@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Translator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #fcbf18;
+        margin: 0;
+        padding: 0;
+      }
+
+      #paragraph {
+        width: 80%;
+        margin: 40px auto;
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+
+      .header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #333;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 12px 24px;
+        font-size: 18px;
+        background-color: #34aa8e;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .btn:hover {
+        background-color: #ff4757;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="heading" class="header">Artificial Intelligence</h1>
+
+    <p id="paragraph">
+      Artificial intelligence (AI) is the capability of computational systems to
+      perform tasks typically associated with human intelligence, such as
+      learning, reasoning, problem-solving, perception, and decision-making. It
+      is a field of research in computer science that develops and studies
+      methods and software that enable machines to perceive their environment
+      and use learning and intelligence to take actions that maximize their
+      chances of achieving defined goals.[1] High-profile applications of AI
+      include advanced web search engines (e.g., Google Search); recommendation
+      systems (used by YouTube, Amazon, and Netflix); virtual assistants (e.g.,
+      Google Assistant, Siri, and Alexa); autonomous vehicles (e.g., Waymo);
+      generative and creative tools (e.g., language models and AI art); and
+      superhuman play and analysis in strategy games (e.g., chess and Go).
+      However, many AI applications are not perceived as AI: "A lot of cutting
+      edge AI has filtered into general applications, often without being called
+      AI because once something becomes useful enough and common enough it's not
+      labeled AI anymore."[2][3]
+    </p>
+
+    <div class="controls">
+      <select id="languageSelect" class="btn">
+        <option value="english">English</option>
+        <option value="marathi">Marathi</option>
+        <option value="hindi">Hindi</option>
+        <option value="spanish">Spanish</option>
+      </select>
+
+      <button onclick="translateLanguage()" class="btn">Translate</button>
+    </div>
+
+    <!-- External language data files -->
+    <script src="./english.js"></script>
+    <script src="./marathi.js"></script>
+    <script src="./hindi.js"></script>
+    <script src="./spanish.js"></script>
+
+    <script>
+      const translate = {
+        english: typeof englishData !== "undefined" ? englishData : {},
+        marathi: typeof marathiData !== "undefined" ? marathiData : {},
+        hindi: typeof hindiData !== "undefined" ? hindiData : {},
+        spanish: typeof spanishData !== "undefined" ? spanishData : {},
+      };
+
+      function translateLanguage() {
+        const selectedLang = document.getElementById("languageSelect").value;
+        const data = translate[selectedLang];
+
+        if (data && data.heading && data.paragraph) {
+          document.getElementById("heading").innerText = data.heading;
+          document.getElementById("paragraph").innerText = data.paragraph;
+          localStorage.setItem("language", selectedLang);
+        } else {
+          alert("Translation not available for the selected language.");
+        }
+      }
+
+      window.onload = function () {
+        let savedLanguage = localStorage.getItem("language");
+        if (savedLanguage) {
+          document.getElementById("languageSelect").value = savedLanguage;
+          translateLanguage(); // Optional: auto-translate on load
+        }
+      };
+    </script>
+  </body>
+</html>
